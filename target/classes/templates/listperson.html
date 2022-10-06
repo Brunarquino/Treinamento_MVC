@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pessoa</title>
+</head>
+<body>
+	<div th:if="${list != null}">
+	
+		<table>
+			<thead>
+				<tr>
+					<th>Id: </th>
+					<th>Nome:</th>
+					<th>Idade: </th>
+					<th>Status:</th>
+					<th>Opções</th>
+				</tr>
+				
+			</thead>
+			
+			<tbody>
+				<tr th:each="person: ${list}">
+					<td><span th:text="${person.id}"></span> </td>
+					<td><span th:text="${person.name}"></span> </td>
+					<td><span th:text="${person.age}"></span> </td>
+					<td><span th:text="${person.status ? 'Ativo' : 'Inativo'}"></span></td>
+					<td><a th:href="@{/person/delete(id=${person.id})}">Deletar</a></td>
+					<td><a th:href="@{/person/edit(id=${person.id})}">Editar</a></td>
+				</tr>
+			</tbody>
+			
+			
+		</table>
+	</div>
+	<br>
+	<a th:href="@{/person/cadastrar}">Adicionar Pessoa</a>
+	<br>
+    <div th:if="${message != null}">
+    	<h3 th:text="${message}"></h3>
+	</div>
+</body>
+</html>
